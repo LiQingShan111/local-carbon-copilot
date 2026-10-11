@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="地方碳策 AI：面向宁波制造业中小企业的产品碳足迹与减排决策助手。">
+  <meta name="theme-color" content="#123c34">
+  <title>地方碳策 AI｜产品碳足迹与减排决策助手</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="主导航">
+      <a class="brand" href="#overview" aria-label="地方碳策 AI 首页">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span><strong>地方碳策</strong><small>LOCAL CARBON COPILOT</small></span>
+      </a>
+
+      <nav class="nav-list">
+        <button class="nav-item active" data-view="overview"><span>01</span>决策总览</button>
+        <button class="nav-item" data-view="profile"><span>02</span>企业画像</button>
+        <button class="nav-item" data-view="inventory"><span>03</span>排放盘查</button>
+        <button class="nav-item" data-view="actions"><span>04</span>减排措施</button>
+        <button class="nav-item" data-view="roadmap"><span>05</span>90天计划</button>
+        <button class="nav-item" data-view="submission"><span>06</span>参赛准备</button>
+      </nav>
+
+      <div class="sidebar-note">
+        <span class="eyebrow">OPEN TRACK · 开放选题</span>
+        <strong>中国 · 宁波北仑</strong>
+        <p>一个地方、一个真实碳治理问题、一个可验证的 AI 解法。</p>
+        <div class="status-line"><i></i>演示数据已载入</div>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div>
+          <span class="eyebrow">AI4CLIMATE · OPEN TRACK · NINGBO</span>
+          <h1 id="pageTitle">从碳数据，到下一步行动。</h1>
+        </div>
+        <div class="top-actions">
+          <button class="btn ghost" id="saveBtn">保存本次测算</button>
+          <button class="btn primary" id="exportBtn">导出决策摘要 <span>↗</span></button>
+        </div>
+      </header>
+
+      <div class="demo-banner" role="note">
+        <strong>演示原型</strong>
+        <span>当前排放因子、成本与政策适用判断仅用于方案演示，正式核算须由专业人员依据最新规则复核。</span>
+        <button id="dismissBanner" aria-label="关闭提示">×</button>
+      </div>
+
+      <section class="view active" id="overview" data-title="从碳数据，到下一步行动。">
+        <article class="challenge-fit">
+          <div><span>ONE PLACE</span><strong>中国 · 宁波市北仑区</strong><p>制造业密集、产品碳足迹与绿色供应链需求正在形成。</p></div>
+          <div><span>ONE CLIMATE PROBLEM</span><strong>中小企业有数据，却难以形成可信减排决策</strong><p>票据、BOM、因子与政策分散；传统咨询周期长、持续使用成本高。</p></div>
+          <div><span>ONE AI SOLUTION</span><strong>政策约束下的碳足迹与减排决策助手</strong><p>把非结构化证据转成可审计基线，并按减排、成本和可执行性排序。</p></div>
+        </article>
+        <div class="hero-grid">
+          <article class="card company-card">
+            <div class="card-head">
+              <div>
+                <span class="eyebrow">目标用户 · 企业能源负责人 · NB-PM-01</span>
+                <h2>宁波甬创精密部件有限公司</h2>
+              </div>
+              <span class="pill">北仑区</span>
+            </div>
+            <div class="company-meta">
+              <span>金属零部件制造</span><span>52 名员工</span><span>年产 12 万件</span>
+            </div>
+            <div class="readiness-row">
+              <div>
+                <span>方案准备度</span>
+                <strong id="readinessValue">72%</strong>
+              </div>
+              <div class="progress"><i id="readinessBar" style="width:72%"></i></div>
+              <small>补齐供应商材料因子后可进入专业复核</small>
+            </div>
+          </article>
+
+          <article class="card score-card">
+              <span class="eyebrow">AI 辅助后的数据可信度</span>
+            <div class="score-wrap">
+              <strong id="qualityScore">78</strong><span>/ 100</span>
+              <div class="score-ring" aria-hidden="true"><i></i></div>
+            </div>
+            <p><b>2项</b>关键数据待补齐，AI 已标记来源与责任人。</p>
+          </article>
+        </div>
+
+        <div class="metrics-grid">
+          <article class="metric dark">
+            <span>年度排放基线</span>
+            <strong><b id="totalEmission">1,008</b> tCO₂e</strong>
+            <small>范围 1、2 与主要上游材料</small>
+          </article>
+          <article class="metric">
+            <span>单位产品碳强度</span>
+            <strong><b id="intensity">8.40</b> kgCO₂e</strong>
+            <small>每件成品 · 演示估算</small>
+          </article>
+          <article class="metric accent">
+            <span>已选措施减排潜力</span>
+            <strong><b id="selectedReduction">154</b> tCO₂e</strong>
+            <small id="reductionPercent">约占基线 15.3%</small>
+          </article>
+          <article class="metric">
+            <span>预计首年投入</span>
+            <strong><b id="selectedCost">¥ 41</b> 万</strong>
+            <small>不含潜在补贴与融资</small>
+          </article>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="card emissions-card">
+            <div class="card-head">
+              <div><span class="eyebrow">排放结构</span><h3>热点不在“感觉”，在数据。</h3></div>
+              <button class="text-link go-view" data-view="inventory">查看盘查 →</button>
+            </div>
+            <div class="emissions-viz">
+              <div class="donut" id="donut" aria-label="排放结构图">
+                <div><strong id="donutTotal">1,008</strong><span>tCO₂e / 年</span></div>
+              </div>
+              <div class="legend" id="legend"></div>
+            </div>
+          </article>
+
+          <article class="card next-card">
+            <div class="card-head">
+              <div><span class="eyebrow">AI 建议</span><h3>现在最值得做的三件事</h3></div>
+              <span class="ai-badge">✦ 已重算</span>
+            </div>
+            <ol class="next-list" id="topActions"></ol>
+            <button class="btn soft full go-view" data-view="actions">比较全部措施</button>
+          </article>
+        </div>
+
+        <article class="card policy-strip">
+          <div><span class="eyebrow">政策适配</span><h3>3 条政策线索已关联到行动</h3></div>
+          <div class="policy-mini"><span>国家</span><p>产品碳足迹管理体系</p><b>核算与数据质量</b></div>
+          <div class="policy-mini"><span>浙江</span><p>省级“5+N”碳账户</p><b>企业与产品账户</b></div>
+          <div class="policy-mini"><span>宁波</span><p>制造业碳足迹认证支持</p><b>申报条件待确认</b></div>
+          <button class="text-link go-view" data-view="roadmap">进入行动计划 →</button>
+        </article>
+
+        <article class="card ai-necessity">
+          <div class="ai-necessity-title"><span class="eyebrow">WHY AI · 不是自动写报告</span><h3>AI 处理人力难以持续完成的四类任务</h3><p>计算引擎负责确定性核算，AI 负责理解、匹配、检查与排序；所有结论保留来源和人工复核入口。</p></div>
+          <div class="ai-task"><b>01</b><strong>凭证理解</strong><span>从账单、BOM 与采购凭证抽取活动数据</span></div>
+          <div class="ai-task"><b>02</b><strong>因子匹配</strong><span>结合地区、年份和材料语义推荐因子并给出置信度</span></div>
+          <div class="ai-task"><b>03</b><strong>异常识别</strong><span>发现缺失、重复边界和跨表矛盾，生成补证清单</span></div>
+          <div class="ai-task"><b>04</b><strong>约束排序</strong><span>综合减排量、成本、产能与政策条件排列措施</span></div>
+        </article>
+      </section>
+
+      <section class="view" id="profile" data-title="先描述现场，再谈 AI。">
+        <div class="section-intro">
+          <div><span class="eyebrow">STEP 01 · 企业画像</span><h2>告诉系统，减排发生在哪里。</h2></div>
+          <p>原型聚焦宁波制造业。地点、行业和核算边界决定政策适用性、排放因子与可选措施。</p>
+        </div>
+        <form class="card form-card" id="profileForm">
+          <div class="form-grid">
+            <label>企业名称<input id="companyName" value="宁波甬创精密部件有限公司"></label>
+            <label>所在地区<select id="district"><option>北仑区</option><option>鄞州区</option><option>镇海区</option><option>海曙区</option><option>慈溪市</option></select></label>
+            <label>所属行业<select id="industry"><option>金属零部件制造</option><option>纺织与服装</option><option>电子电器</option><option>塑料制品</option><option>汽车零部件</option></select></label>
+            <label>年度产量（件）<input id="output" type="number" min="1" step="1000" value="120000"></label>
+            <label>员工数量<input id="employees" type="number" min="1" value="52"></label>
+            <label>核算目标<select id="goal"><option>识别减排机会</option><option>准备产品碳足迹认证</option><option>回应链主企业要求</option><option>准备出口市场披露</option></select></label>
+          </div>
+          <fieldset>
+            <legend>本次核算边界</legend>
+            <label class="check"><input type="checkbox" checked disabled><span>范围 1 · 企业直接排放</span></label>
+            <label class="check"><input type="checkbox" checked disabled><span>范围 2 · 外购电力</span></label>
+            <label class="check"><input type="checkbox" id="scope3" checked><span>主要范围 3 · 上游材料与运输</span></label>
+          </fieldset>
+          <div class="form-footer"><span>信息仅保存在当前浏览器，原型不会上传企业资料。</span><button type="submit" class="btn primary">更新企业画像</button></div>
+        </form>
+      </section>
+
+      <section class="view" id="inventory" data-title="让每一吨排放都有出处。">
+        <div class="section-intro">
+          <div><span class="eyebrow">STEP 02 · 排放盘查</span><h2>用真实活动数据建立基线。</h2></div>
+          <p>修改数据会立即更新排放结构和措施减排量。因子为演示值，正式使用时应接入最新版权威因子库。</p>
+        </div>
+        <div class="inventory-layout">
+          <article class="card data-table-card">
+            <div class="card-head"><div><span class="eyebrow">活动数据</span><h3>年度数据清单</h3></div><span class="pill warm">5 个排放源</span></div>
+            <div class="data-table" id="activityRows"></div>
+          </article>
+          <aside class="card issues-card">
+            <span class="eyebrow">AI 数据检查</span>
+            <h3>先补证据，再做结论。</h3>
+            <div class="issue high"><b>高优先级</b><strong>原材料采用行业平均因子</strong><p>向前 3 大供应商索取产品碳足迹或材料成分证明。</p></div>
+            <div class="issue medium"><b>中优先级</b><strong>柴油票据缺少设备归属</strong><p>区分厂内叉车与外包运输，避免边界重复。</p></div>
+            <div class="issue good"><b>已通过</b><strong>电力账单覆盖 12 个月</strong><p>月份连续，合计值与财务付款记录一致。</p></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view" id="actions" data-title="选择能发生的减排，而不是漂亮的建议。">
+        <div class="section-intro">
+          <div><span class="eyebrow">STEP 03 · 减排措施</span><h2>按影响、成本与可执行性排序。</h2></div>
+          <p>勾选措施即可形成组合方案。AI 的排序只提供决策支持，设备安全、产能与财务判断仍由企业负责人确认。</p>
+        </div>
+        <div class="scenario-toolbar card">
+          <div><span>当前组合</span><strong><b id="actionCount">3</b> 项措施</strong></div>
+          <div><span>预计减排</span><strong><b id="toolbarReduction">154</b> tCO₂e/年</strong></div>
+          <div><span>首年投入</span><strong><b id="toolbarCost">41</b> 万元</strong></div>
+          <button class="btn primary go-view" data-view="roadmap">生成90天计划</button>
+        </div>
+        <div class="action-grid" id="actionGrid"></div>
+      </section>
+
+      <section class="view" id="roadmap" data-title="把方案压缩成 90 天。">
+        <div class="section-intro">
+          <div><span class="eyebrow">STEP 04 · 90 天验证</span><h2>每一步，都有负责人和证据。</h2></div>
+          <p>目标不是在90天内完成所有改造，而是验证数据、获得报价、执行一项低门槛措施，并形成可复核结果。</p>
+        </div>
+        <div class="roadmap-summary">
+          <article><span>试点目标</span><strong id="roadmapTarget">验证 154 tCO₂e/年减排潜力</strong></article>
+          <article><span>主要用户</span><strong>企业能源负责人 · 第三方核算顾问</strong></article>
+          <article><span>成功判据</span><strong>数据覆盖 ≥ 95% · 至少 1 项措施执行</strong></article>
+        </div>
+        <div class="validation-grid">
+          <article><b>≥ 95%</b><span>关键活动数据覆盖率</span><small>账单、BOM 与采购凭证</small></article>
+          <article><b>≤ 10%</b><span>与专家复核结果偏差</span><small>按同一边界和因子版本比较</small></article>
+          <article><b>− 60%</b><span>资料整理与初核时间</span><small>对比人工基线流程</small></article>
+          <article><b>≥ 1 项</b><span>企业实际采纳措施</span><small>以报价、工单或批准记录为证</small></article>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item"><span>DAY 01—15</span><div><h3>建立可信基线</h3><p>收集12个月能源账单、物料清单与采购凭证；明确产品功能单位和核算边界。</p><ul><li>责任人：财务 + 生产</li><li>证据：账单、BOM、产量记录</li></ul></div><b>数据</b></article>
+          <article class="timeline-item"><span>DAY 16—30</span><div><h3>补齐关键缺口</h3><p>向主要供应商索取材料数据，复核异常值，并由专业人员确认排放因子。</p><ul><li>责任人：采购 + 核算顾问</li><li>证据：供应商声明、因子版本记录</li></ul></div><b>复核</b></article>
+          <article class="timeline-item"><span>DAY 31—60</span><div><h3>验证优先措施</h3><p id="pilotActionText">完成电机系统能效诊断，获取设备改造报价，并执行待机时长优化。</p><ul><li>责任人：设备主管</li><li>证据：分表数据、报价单、操作记录</li></ul></div><b>行动</b></article>
+          <article class="timeline-item"><span>DAY 61—90</span><div><h3>测量、复盘、决策</h3><p>对比实施前后单位产量能耗，记录偏差原因，形成下一季度投资决策。</p><ul><li>责任人：总经理 + 能源负责人</li><li>证据：实测数据、复盘纪要、批准记录</li></ul></div><b>验证</b></article>
+        </div>
+        <article class="card policy-detail">
+          <div><span class="eyebrow">政策证据链</span><h3>每条判断，回到原始出处。</h3></div>
+          <a href="https://app.www.gov.cn/govdata/gov/202406/06/515849/article.html" target="_blank" rel="noreferrer"><span>国家 · 2024</span><strong>关于建立碳足迹管理体系的实施方案</strong><b>查看原文 ↗</b></a>
+          <a href="https://www.ndrc.gov.cn/xwdt/dt/dfdt/202609/t20260929_1407885.html" target="_blank" rel="noreferrer"><span>浙江 · 2026</span><strong>省级碳账户平台与“5+N”体系</strong><b>查看原文 ↗</b></a>
+          <a href="https://www.mee.gov.cn/zcwj/zcjd/202509/t20250902_1126715.shtml" target="_blank" rel="noreferrer"><span>国家 · 2025</span><strong>全国碳市场数字化智能化建设</strong><b>查看原文 ↗</b></a>
+        </article>
+      </section>
+
+      <section class="view" id="submission" data-title="让评委看见证据，而不只是承诺。">
+        <div class="section-intro">
+          <div><span class="eyebrow">AI4CLIMATE · 参赛准备</span><h2>按评审权重，补齐证据链。</h2></div>
+          <p>本项目选择开放选题。当前目标不是宣称已经完成认证，而是证明一个真实用户能在90天内更快建立基线、选择措施并采取行动。</p>
+        </div>
+
+        <div class="submission-hero">
+          <article class="card submission-score">
+            <span class="eyebrow">内部准备度 · 非评委评分</span>
+            <div><strong>76</strong><span>/ 100</span></div>
+            <p>可运行原型、公开证据与90天验证计划已形成；企业访谈、用户测试和试用意向仍须由团队直接取得。</p>
+          </article>
+          <article class="card deadline-card">
+            <span class="eyebrow">SUBMISSION DEADLINE</span>
+            <strong>10 月 16 日<br><b>24:00 CST</b></strong>
+            <p>同一套材料用于初赛与复赛。Demo 视频控制在 3 分钟以内。</p>
+            <a class="btn primary" href="https://ai4climate.deepseek.club" target="_blank" rel="noreferrer">前往提交平台 ↗</a>
+          </article>
+        </div>
+
+        <article class="card application-helper">
+          <div class="application-head">
+            <div><span class="eyebrow">APPLICATION FORM · 报名表填报助手</span><h3>把项目内容整理成可直接提交的字段。</h3><p>项目相关答案已根据当前方案起草；姓名、年龄和联系方式等个人信息请由负责人本人填写。</p></div>
+            <span class="form-state">建议选择：开放选题 · 已有原型或 Demo</span>
+          </div>
+          <div class="application-grid">
+            <div class="form-answer personal"><span>个人 / 团队名称</span><strong>请填写正式名称</strong><small>负责人确认后填写，不自动生成</small></div>
+            <div class="form-answer"><span>项目名称</span><strong id="projectNameDraft">地方碳策 AI——宁波制造业产品碳足迹与减排决策助手</strong><button class="copy-field" data-copy-target="projectNameDraft">复制</button></div>
+            <div class="form-answer personal"><span>负责人及联系方式</span><strong>姓名、年龄、国家/地区、城市、机构、邮箱、电话/微信</strong><small>仅用于资格核验与赛事通知，请勿放入公开 Demo</small></div>
+            <div class="form-answer"><span>选题方向</span><strong>开放选题 / 自选真实场景</strong><small>地点：中国浙江省宁波市北仑区</small></div>
+            <div class="form-answer"><span>项目阶段</span><strong>已有原型或 Demo</strong><small>暂不选择“正在小范围测试”或“已上线/已有用户”</small></div>
+            <div class="form-answer"><span>Demo / 代码仓库链接</span><strong id="demoLinkDraft">https://local-carbon-copilot.liqingshan666.chatgpt.site</strong><button class="copy-field" data-copy-target="demoLinkDraft">复制</button></div>
+          </div>
+          <div class="long-answer-grid">
+            <div class="long-answer"><div><span>真实气候问题</span><button class="copy-field" data-copy-target="problemDraft">复制文本</button></div><p id="problemDraft">问题发生在制造业密集的宁波市北仑区。许多中小制造企业拥有电费账单、物料清单和采购凭证，却缺少持续、低成本的碳数据治理能力，难以形成可信的产品碳足迹基线，也难以判断应优先实施哪项减排措施。直接受影响的是企业能源或 ESG 负责人、核算顾问和管理层；链主客户、工业园区及地方产业服务部门也需要更透明、可复核的结果。公开政策、国家标准编制企业案例和浙江碳账户覆盖数据共同说明这一需求真实存在，但项目仍将通过 1–3 家企业访谈完成一手验证。</p></div>
+            <div class="long-answer"><div><span>AI 承担的具体任务</span><button class="copy-field" data-copy-target="aiTaskDraft">复制文本</button></div><p id="aiTaskDraft">AI 负责四项具体任务：从账单、BOM 和采购凭证中抽取活动数据；结合地区、年份和材料语义推荐排放因子并标注置信度；识别缺失项、重复边界和跨表矛盾；在减排量、成本、产能与政策条件约束下排序措施。AI 的必要性在于企业资料非结构化、因子匹配依赖上下文且需要持续更新。排放量由确定性公式引擎计算，不由大模型直接生成。90 天内将以数据覆盖率、与专家复核偏差、资料整理时间和措施采纳记录验证效果。</p></div>
+          </div>
+          <div class="attachment-row">
+            <div><span>DeepSeek.club 作品帖</span><strong>发布后补充链接</strong></div>
+            <div><span>PPT 附件</span><strong>选填 · 最大 30MB</strong><small>ppt / pptx / pps / ppsx / pot / potx / odp / pdf</small></div>
+            <div><span>介绍视频</span><strong>选填 · 最大 200MB</strong><small>mp4 / mov / webm / avi / mkv</small></div>
+          </div>
+        </article>
+
+        <div class="judge-grid">
+          <article class="card judge-card"><div><span>真实问题与气候价值</span><b>20%</b></div><i><em style="width:82%"></em></i><p><strong>已有：</strong>宁波企业参与碳足迹标准、地方服务与补贴政策证据。</p><small><b>待验证：</b>1–3家目标企业的一手访谈。</small></article>
+          <article class="card judge-card"><div><span>AI 方案与技术有效性</span><b>20%</b></div><i><em style="width:78%"></em></i><p><strong>已有：</strong>官方报告模板支持样例字段与核查逻辑。</p><small><b>待验证：</b>脱敏凭证测试集及准确率、召回率。</small></article>
+          <article class="card judge-card"><div><span>可实施性与用户体验</span><b>20%</b></div><i><em style="width:68%"></em></i><p><strong>已有：</strong>可运行交互原型、决策摘要和90天流程。</p><small><b>待验证：</b>至少3名目标用户完成任务测试。</small></article>
+          <article class="card judge-card"><div><span>市场可持续性</span><b>15%</b></div><i><em style="width:66%"></em></i><p><strong>已有：</strong>认证试点、地方补贴与省级平台覆盖形成需求信号。</p><small><b>待验证：</b>园区或服务机构的书面试用意向。</small></article>
+          <article class="card judge-card"><div><span>传播与公众采用</span><b>15%</b></div><i><em style="width:86%"></em></i><p><strong>已有：</strong>把排放热点与措施转成清晰的行动信息。</p><small><b>待补：</b>3分钟视频和一页公开解释材料。</small></article>
+          <article class="card judge-card"><div><span>扩展性、伦理与开放性</span><b>10%</b></div><i><em style="width:82%"></em></i><p><strong>已有：</strong>公式与 AI 分离、来源可溯、人工复核边界。</p><small><b>待补：</b>脱敏规范、因子版本记录与开源范围。</small></article>
+        </div>
+
+        <article class="card evidence-ledger">
+          <div class="ledger-head">
+            <div><span class="eyebrow">PUBLIC EVIDENCE LEDGER · 公开证据台账</span><h3>可靠网站能证明需求存在，但不能替代一手验证。</h3></div>
+            <span class="research-badge">案头研究 · 更新于 2026-10-11</span>
+          </div>
+          <div class="evidence-cards">
+            <a class="evidence-card" href="https://std.samr.gov.cn/dcpspTools/gbPlan/download?path=%2Fzxd%2F2023001363%2F20_%E6%A0%87%E5%87%86%E8%B5%B7%E8%8D%89%2F20_DI_2023001363_%E4%BA%A7%E5%93%81%E7%A2%B3%E8%B6%B3%E8%BF%B9%E9%87%8F%E5%8C%96%E8%A6%81%E6%B1%82+%E5%BE%AA%E7%8E%AF%E5%86%8D%E5%88%A9%E7%94%A8%E5%8C%96%E5%AD%A6%E7%BA%A4%E7%BB%B4.pdf" target="_blank" rel="noreferrer">
+              <span>企业公开案例 01</span><strong>宁波大发新材料有限公司</strong><p>国家标准编制说明显示，该企业为循环再利用化学纤维产品碳足迹标准的主要起草单位，并参与企业调研、样品与验证工作。</p><em>全国标准信息公共服务平台 ↗</em>
+            </a>
+            <a class="evidence-card" href="https://std.samr.gov.cn/dcpspTools/gbPlan/download?path=%2Fzxd%2F2023001654%2F20_%E6%A0%87%E5%87%86%E8%B5%B7%E8%8D%89%2F20_DI_2023001654_%E4%BA%A7%E5%93%81%E7%A2%B3%E8%B6%B3%E8%BF%B9+%E4%BA%A7%E5%93%81%E7%A7%8D%E7%B1%BB%E8%A7%84%E5%88%99+%E7%A8%80%E5%9C%9F%E6%B0%B8%E7%A3%81%E6%9D%90%E6%96%99.pdf" target="_blank" rel="noreferrer">
+              <span>企业公开案例 02</span><strong>宁波科田磁业股份有限公司</strong><p>稀土永磁材料产品碳足迹国家标准编制材料列出该宁波制造企业，说明本地重点行业已进入核算规则与验证实践。</p><em>全国标准信息公共服务平台 ↗</em>
+            </a>
+            <a class="evidence-card" href="https://www.ndrc.gov.cn/xwdt/dt/dfdt/202609/t20260929_1407885.html" target="_blank" rel="noreferrer">
+              <span>规模与采用信号</span><strong>浙江省级碳账户覆盖 6.2 万家规上工业企业</strong><p>平台贯通 6 个涉碳数据平台、归集超 1600 万条数据，说明企业碳数据治理已形成大规模公共基础设施场景。</p><em>国家发展和改革委员会 ↗</em>
+            </a>
+          </div>
+          <div class="data-proof-grid">
+            <div><span>匿名样例数据怎么来</span><strong>依据官方字段合成，不冒充企业原始数据</strong><p>当前 NB-PM-01 为匿名合成场景，字段结构参考生态环境部企业温室气体排放报告与核查模板；正式试点需替换为企业授权、脱敏后的账单、BOM 与采购凭证。</p><a href="https://www.mee.gov.cn/xxgk2018/xxgk/xxgk06/202310/W020231018422356413102.pdf" target="_blank" rel="noreferrer">查看生态环境部报告模板 ↗</a></div>
+            <div><span>政策与付费信号</span><strong>宁波政策拟支持产品碳足迹核算认证</strong><p>公开征求意见稿提出，对符合条件的核查、认证、评价服务费用给予 50% 补助，单张最高 5 万元、单个企业累计最高 50 万元。</p><a href="https://app.ningbo.gov.cn/jact/front/mailpubdetail.do?sysid=63&amp;transactId=50455" target="_blank" rel="noreferrer">查看宁波市政府原文 ↗</a></div>
+          </div>
+          <div class="validation-status" aria-label="直接验证状态">
+            <div><span>企业访谈</span><strong>0 / 3</strong><small>公开案例 ≠ 访谈</small></div>
+            <div><span>用户任务测试</span><strong>0 / 3</strong><small>需记录时长、错误与反馈</small></div>
+            <div><span>书面试用意向</span><strong>0 / 1</strong><small>需企业或园区直接确认</small></div>
+            <p>真实性说明：以上链接是公开、可核验的案头证据；只有团队直接完成并留存纪要、测试记录或意向函后，计数才会更新。</p>
+          </div>
+        </article>
+
+        <div class="evidence-layout">
+          <article class="card market-card">
+            <div><span class="eyebrow">MARKET PATH</span><h3>谁使用、谁受益、谁付费？</h3></div>
+            <dl><dt>直接用户</dt><dd>制造企业能源/ESG负责人、第三方碳核算顾问</dd><dt>受益者</dt><dd>企业管理层、链主客户、园区与地方产业服务部门</dd><dt>潜在付费方</dt><dd>制造企业、工业园区、绿色供应链服务机构</dd><dt>持续使用逻辑</dt><dd>按月补充活动数据，季度比较减排措施，年度更新产品碳足迹底稿</dd></dl>
+            <p class="boundary-note">验证原则：先验证节省的时间和被采纳的行动，再验证 SaaS 订阅或“工具＋专业复核”服务模式。</p>
+          </article>
+          <article class="card safety-card">
+            <div><span class="eyebrow">ETHICS & SAFETY</span><h3>明确 AI 的安全边界</h3></div>
+            <ul><li><b>不替代认证：</b>AI 输出是预核算底稿，不生成官方认证结论。</li><li><b>不隐藏不确定性：</b>每个因子记录地区、年份、来源与置信度。</li><li><b>不自动申报：</b>涉及监管、补贴和披露的信息必须人工确认。</li><li><b>最小化数据：</b>原型仅在浏览器本地保存；试点数据先脱敏再处理。</li><li><b>可审计计算：</b>排放量由公式引擎计算，大模型不得直接编造数值。</li></ul>
+          </article>
+        </div>
+
+        <article class="card submission-kit">
+          <div><span class="eyebrow">ONE COMPLETE SUBMISSION</span><h3>五项提交材料</h3></div>
+          <div class="kit-item ready"><b>01</b><p><strong>项目说明</strong><span>地点、问题、用户、AI任务与方案逻辑已明确</span></p><em>已形成</em></div>
+          <div class="kit-item draft"><b>02</b><p><strong>3分钟演示视频</strong><span>按“问题—AI流程—结果—90天验证”录制</span></p><em>待录制</em></div>
+          <div class="kit-item ready"><b>03</b><p><strong>可运行成果</strong><span>交互式 Demo 已部署并可现场操作</span></p><em>已完成</em></div>
+          <div class="kit-item ready"><b>04</b><p><strong>数据与 AI 说明</strong><span>数据来源、确定性计算与 AI 任务分工已说明</span></p><em>已形成</em></div>
+          <div class="kit-item ready"><b>05</b><p><strong>验证计划</strong><span>目标用户、四项指标、责任人与证据已定义</span></p><em>已形成</em></div>
+          <button class="btn soft" id="demoScriptBtn">导出 3 分钟演示提纲</button>
+        </article>
+      </section>
+
+      <footer><span>地方碳策 AI · AI4Climate 开放选题原型</span><span>ONE PLACE · ONE CLIMATE PROBLEM · ONE AI SOLUTION</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
